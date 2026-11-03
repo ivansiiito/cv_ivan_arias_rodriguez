@@ -1,0 +1,9 @@
+{
+    "python.terminal.useEnvFile": true,
+    "chat.tools.terminal.autoApprove": {
+        "Test-Path": true,
+        "ForEach-Object": true,
+        "Get-Item": true,
+        "Test-NetConnection": true
+    }
+}

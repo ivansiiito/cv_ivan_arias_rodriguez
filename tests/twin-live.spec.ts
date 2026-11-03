@@ -1,0 +1,36 @@
+import { test, expect } from "@playwright/test";
+import { mkdirSync } from "node:fs";
+
+test("live LM Studio: grounded career answers and conversational follow-up", async ({ page }) => {
+  test.skip(process.env.LM_STUDIO_LIVE_TEST !== "1", "Set LM_STUDIO_LIVE_TEST=1 to test the running local model.");
+  test.setTimeout(180_000);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Habla con mi gemelo IA" }).click();
+  await page.getByRole("button", { name: "¿Qué hiciste en Nokia?" }).click();
+  await expect(page.getByRole("button", { name: "Detener respuesta" })).not.toBeVisible({ timeout: 125_000 });
+  await expect(page.locator(".twin-error")).toHaveCount(0);
+  const answer = page.locator(".twin-message-assistant .twin-message-text").first();
+  await expect(answer).toContainText(/Nokia/i);
+  console.log("LM Studio career answer:", (await answer.innerText()).slice(0, 800));
+  await page.getByRole("textbox", { name: "Tu pregunta sobre Iván" }).fill("¿En qué ciudad fue y durante qué años?");
+  await page.getByRole("button", { name: "Enviar pregunta" }).click();
+  await expect(page.getByRole("button", { name: "Detener respuesta" })).not.toBeVisible({ timeout: 125_000 });
+  await expect(page.locator(".twin-error")).toHaveCount(0);
+  const followup = page.locator(".twin-message-assistant .twin-message-text").last();
+  await expect(followup).toContainText(/Helsinki/);
+  await expect(followup).toContainText(/1999/);
+  await expect(followup).toContainText(/2010/);
+  mkdirSync(".local/screenshots", { recursive: true });
+  await page.screenshot({ path: ".local/screenshots/twin-live-desktop.png", animations: "disabled" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.screenshot({ path: ".local/screenshots/twin-live-mobile.png", animations: "disabled" });
+  await page.getByRole("textbox", { name: "Tu pregunta sobre Iván" }).fill("¿Cuál fue el título exacto de tu tesis y en qué revista se publicó?");
+  await page.getByRole("button", { name: "Enviar pregunta" }).click();
+  await expect(page.getByRole("button", { name: "Detener respuesta" })).not.toBeVisible({ timeout: 125_000 });
+  await expect(page.locator(".twin-error")).toHaveCount(0);
+  const unknown = await page.locator(".twin-message-assistant .twin-message-text").last().innerText();
+  expect(unknown).toContain("El modelo cortical HTM y su aplicación al conocimiento lingüístico");
+  expect(unknown).toMatch(/no (?:está|figura|dispongo|tengo|aparece|se |consta|indica)|no.*(?:perfil|información)|perfil.*no/i);
+  console.log("LM Studio unknown fact answer:", unknown.slice(0, 600));
+});
