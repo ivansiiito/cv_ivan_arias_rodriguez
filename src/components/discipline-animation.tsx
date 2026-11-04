@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import textos from "@/i18n/textos.json";
+import { translate, type Locale } from "@/i18n/locale";
 
-const disciplines = ["Ingeniería", "Lingüística", "Inteligencia artificial"];
 // Vista temporal para ajustar los iconos. Cambiar a false recupera la animación.
 const previewIcons = false;
-export function DisciplineAnimation() {
+export function DisciplineAnimation({ locale = "es" }: { locale?: Locale }) {
+  const disciplines = [textos.disciplinas.ingenieria, textos.disciplinas.linguistica, textos.disciplinas.ia].map(text => translate(text, locale));
   const [reducedMotion, setReducedMotion] = useState(false);
   const [index, setIndex] = useState(0);
   const [iconIndex, setIconIndex] = useState(0);
@@ -40,10 +42,10 @@ export function DisciplineAnimation() {
       }
     }, delay);
     return () => window.clearTimeout(timer);
-  }, [index, iconIndex, length, phase, reducedMotion]);
+  }, [index, iconIndex, length, phase, reducedMotion, locale]);
 
   return <div className={`discipline-sequence${previewIcons ? " is-editing-icons" : ""}`}>
-    <span className="sr-only">Ingeniería, Lingüística e Inteligencia artificial.</span>
+    <span className="sr-only">{translate(textos.disciplinas.accesible, locale)}</span>
     <div className="discipline-sequence-motion" aria-hidden="true">
       <span className="discipline-icon" aria-hidden="true">
         <span className={`discipline-icon-layer${iconIndex === 0 ? " is-active" : ""}`}>
@@ -67,6 +69,6 @@ export function DisciplineAnimation() {
       </span>
       {!previewIcons && <span className={`discipline-sequence-text${phase === "transition" ? " is-fading" : ""}`}>{disciplines[index].slice(0, length)}</span>}
     </div>
-    <div className="discipline-sequence-static" aria-hidden="true">Ingeniería · Lingüística · Inteligencia artificial</div>
+    <div className="discipline-sequence-static" aria-hidden="true">{translate(textos.disciplinas.estatico, locale)}</div>
   </div>;
 }

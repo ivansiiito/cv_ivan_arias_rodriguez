@@ -1,12 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { DigitalTwin } from "@/components/digital-twin";
+import textos from "@/i18n/textos.json";
+import { isLocale, translate } from "@/i18n/locale";
 import "@fontsource-variable/manrope";
 import "@fontsource-variable/dm-sans";
 import "./globals.css";
 import "./twin.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.iarias.es"),
   title: { default: "Iván Arias Rodríguez — Ingeniería, lenguaje e inteligencia artificial", template: "%s · Iván Arias Rodríguez" },
   description: "Ingeniero de telecomunicación y doctor en Lingüística Teórica y Aplicada. Conoce la trayectoria, formación y proyectos de Iván Arias Rodríguez.",
   applicationName: "Iván Arias Rodríguez · Portfolio",
@@ -22,6 +25,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#f7f8f2" };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="es" data-scroll-behavior="smooth"><body><a className="skip-link" href="#contenido">Saltar al contenido</a>{children}<DigitalTwin/></body></html>;
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const value = (await headers()).get("x-page-locale");
+  const locale = isLocale(value) ? value : "es";
+  return <html lang={locale} data-scroll-behavior="smooth"><body><a className="skip-link" href="#contenido">{translate(textos.navegacion.saltar, locale)}</a>{children}<DigitalTwin locale={locale}/></body></html>;
 }

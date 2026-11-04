@@ -1,6 +1,6 @@
 # Iván Arias · Web personal
 
-Web profesional en español, creada con **Next.js 16, React 19 y TypeScript**.
+Web profesional en español, catalán, inglés, francés, italiano, portugués, finés y ruso, creada con **Next.js 16, React 19 y TypeScript**.
 
 La dirección visual combina marfil, verde salvia y verde bosque, tipografía Manrope y DM Sans, composiciones editoriales e ilustraciones originales en SVG y CSS. Las fuentes y los gráficos se sirven localmente.
 
@@ -30,6 +30,8 @@ Para una instalación nueva, necesitas Node.js 20.9 o posterior y ejecutar `npm 
 - Metadatos, favicon e imagen de presentación para compartir.
 - Gemelo digital conversacional, conectado directamente a LM Studio desde el servidor de Next.js.
 
+La web está disponible en español en `/` y en los demás idiomas mediante los prefijos `/ca`, `/en`, `/fr`, `/it`, `/pt`, `/fi` y `/ru`. El selector conserva la página y el ancla al cambiar de idioma. El catálogo `src/i18n/textos.json` contiene textos organizados por sección; en cada entrada, `traducidoDesde` registra el texto español usado para cada traducción. Ejecuta `npm run check:translations` para detectar traducciones que falten o que requieran revisión tras un cambio en español. Al actualizar cada traducción, copia el texto español actualizado en su entrada de `traducidoDesde`. Los nombres propios y las fuentes originales se conservan cuando corresponde.
+
 Los periodos se han conservado tal como aparecen en el PDF, incluido el final del puesto de CTO en octubre de 2026. Las fichas resumen trabajo documentado y sus ilustraciones son interpretaciones visuales; no son capturas de los productos originales.
 
 ## Conversar con el gemelo digital
@@ -58,9 +60,9 @@ LM_STUDIO_API_KEY=
 - **`LM_STUDIO_BASE_URL`**: dirección del servidor. Acepta la URL con o sin `/v1`.
 - **`LM_STUDIO_MODEL`**: identificador del modelo; vacío permite la selección automática.
 - **`LM_STUDIO_REASONING_EFFORT`**: `none` solicita respuestas directas, comprobadas con el Qwen cargado en LM Studio. Esto evita que el modelo consuma el presupuesto de salida en razonamiento sin llegar a responder. Usa `default` para omitir el parámetro o un nivel admitido por tu modelo, como `low`. Solo afecta a las peticiones de esta web; no cambia los ajustes globales de LM Studio.
-- **`LM_STUDIO_API_KEY`**: clave específica si activas autenticación. Si está vacía, las peticiones salen sin clave. Únicamente si LM Studio responde 401 o 403 se reintenta con `OPENROUTER_API_KEY`, la variable que ya existía en el `.env` aportado, si está definida.
+- **`LM_STUDIO_API_KEY`**: clave específica si activas autenticación. Si está vacía, las peticiones salen sin clave.
 
-Ninguna clave se incluye en el contexto del modelo ni se expone al navegador. No se contacta con OpenRouter: el nombre de la variable existente solo sirve como alternativa de autenticación para el servidor configurado. Reinicia Next.js después de modificar las variables. La conexión está concentrada en `src/lib/lm-studio.ts` para facilitar un cambio posterior a otro proveedor compatible.
+Ninguna clave se incluye en el contexto del modelo ni se expone al navegador. Reinicia Next.js después de modificar las variables. La conexión está concentrada en `src/lib/lm-studio.ts` para facilitar un cambio posterior a otro proveedor compatible.
 
 Para conectar la web desplegada con LM Studio mediante ngrok, configura en Vercel las variables de servidor `LM_STUDIO_BASE_URL` (la URL HTTPS del túnel, con o sin `/v1`) y `LM_STUDIO_API_KEY` (la clave de LM Studio). No uses el prefijo `NEXT_PUBLIC_` para la clave. El entorno local conserva su propia configuración y dirección. Para que el chat publicado funcione deben estar activos el servidor de LM Studio y el túnel de ngrok; si cambia la URL del túnel, actualízala en Vercel y vuelve a desplegar. Las URL de `ngrok-free.dev` reciben automáticamente la cabecera `ngrok-skip-browser-warning`.
 
@@ -72,7 +74,7 @@ Si el servidor está apagado, no hay un modelo disponible o la respuesta falla, 
 
 Para añadir un proyecto, incorpora un objeto al array `projects` con un `slug` único, su título, categoría, periodo, descripción y contribuciones. La tarjeta, el filtro, la ruta `/proyectos/tu-slug` y la navegación al siguiente proyecto se generan a partir de ese contenido. Las categorías actuales son `Producto`, `Lenguaje` e `Ingeniería`. `externalUrl` y `externalLabel` permiten añadir el enlace a un portfolio, repositorio o proyecto publicado.
 
-Los colores, tamaños, espacios y adaptaciones a móvil están en **`src/app/globals.css`**. Los textos de presentación se encuentran en **`src/app/page.tsx`**. El CV descargable en Word está en [public/cv-ivan-arias-rodriguez.docx](public/cv-ivan-arias-rodriguez.docx). Los enlaces «Descargar CV» usan esta ruta desde `profile.cv`.
+Los colores, tamaños, espacios y adaptaciones a móvil están en **`src/app/globals.css`**. Los textos de presentación se encuentran en **`src/i18n/textos.json`**. El CV descargable en Word está en [public/cv-ivan-arias-rodriguez.docx](public/cv-ivan-arias-rodriguez.docx). Los enlaces «Descargar CV» usan esta ruta desde `profile.cv`.
 
 La configuración predeterminada no requiere añadir claves ni variables de entorno. Se conserva el `.env` que ya existía. Si en el futuro publicas la web, puedes definir `NEXT_PUBLIC_SITE_URL` con tu dominio para que las imágenes de los metadatos usen esa dirección. El servidor que aloje Next.js deberá poder alcanzar el proveedor del chat; la dirección local de LM Studio solo funciona dentro de tu red.
 

@@ -1,5 +1,8 @@
 import europePaths from "../data/europe-paths.json";
 import type { CSSProperties } from "react";
+import textos from "@/i18n/textos.json";
+import { translate, type Locale } from "@/i18n/locale";
+import { JourneyQuestions } from "./journey-questions";
 
 // Natural Earth 1:110m; city markers use longitude and latitude.
 const mercator = (latitude: number) => Math.log(Math.tan(Math.PI / 4 + latitude * Math.PI / 360));
@@ -15,7 +18,7 @@ const cities = [
   { name: "Madrid", lon: -3.7038, lat: 40.4168, dx: -10, dy: 13, anchor: "end" },
   { name: "Granada", lon: -3.5986, lat: 37.1773, dx: 9, dy: 18 },
 ] as const;
-const questions = [
+const whyQuestions = [
   "¿Por qué?", "Why?", "Miksi?", "Per què?", "Porquê?", "Zergatik?", "Por que?",
   "Pourquoi ?", "Warum?", "Perché?", "Pse?", "Ինչո՞ւ", "Niyə?", "Чаму?",
   "Zašto?", "Защо?", "Γιατί;", "Hvorfor?", "Prečo?", "Zakaj?", "Miks?",
@@ -23,8 +26,19 @@ const questions = [
   "Kodėl?", "Firwat?", "Зошто?", "Għaliex?", "De ce?", "Waarom?",
   "Dlaczego?", "Proč?", "Почему?", "Зашто?", "Varför?", "Neden?", "Чому?",
 ];
+const howQuestions = [
+  "¿Cómo?", "Com?", "Como?", "Nola?", "How?", "Comment ?", "Come?", "Wie?",
+  "Hoe?", "Hvordan?", "Hur?", "Miten?", "Kuidas?", "Hvernig?", "Conas?",
+  "Kā?", "Kaip?", "Jak?", "Ako?", "Kako?", "Како?", "Как?", "Як?",
+  "Πώς;", "Si?", "Cum?", "Hogyan?", "Kif?", "Nasıl?", "Necə?", "Ինչպե՞ս",
+  "როგორ?", "Қалай?",
+];
+const questions = whyQuestions.flatMap((question, index) =>
+  howQuestions[index] ? [question, howQuestions[index]] : [question],
+);
 
-export function HeroArt() {
+export function HeroArt({ locale = "es" }: { locale?: Locale }) {
+  const t = (text: { es: string; en?: string }) => translate(text, locale);
   const points = cities.map(city => ({ ...city, ...project(city.lon, city.lat) }));
   const rotatePoint = (x: number, y: number) => {
     const angle = 8 * Math.PI / 180;
@@ -32,24 +46,9 @@ export function HeroArt() {
     return { x: 290 + scale * ((x - 290) * Math.cos(angle) - (y - 255) * Math.sin(angle)), y: 250 + scale * ((x - 290) * Math.sin(angle) + (y - 255) * Math.cos(angle)) };
   };
   return (
-    <div className="hero-art" role="img" aria-label="Mapa de Europa con Madrid, Barcelona, Helsinki, Kiev, Braganza y Granada; ingeniería, lenguaje e inteligencia artificial como disciplinas conectadas.">
-      <div className="art-topline"><span>UNA TRAYECTORIA CONECTADA</span><span className="art-cross">+</span></div>
-      <div className="journey-questions" aria-hidden="true">
-        {questions.map((question, index) => {
-          const x = (index * 37 + 17) % 101;
-          const y = (index * 61 + 29) % 101;
-          const angle = ((index * 137 + 41) % 360) * Math.PI / 180;
-          const style = {
-            animationDuration: `${questions.length * 4}s`,
-            animationDelay: `${index * 4}s`,
-            "--question-x": `${10 + x * .42}%`,
-            "--question-y": `${12 + y * .65}%`,
-            "--drift-x": `${Math.cos(angle) * 8}px`,
-            "--drift-y": `${Math.sin(angle) * 8}px`,
-          } as CSSProperties;
-          return <span key={question} style={style}>{question}</span>;
-        })}
-      </div>
+    <div className="hero-art" role="img" aria-label={t(textos.mapa.accesible)}>
+      <div className="art-topline"><span>{t(textos.mapa.encabezado)}</span><span className="art-cross">+</span></div>
+      <JourneyQuestions questions={questions}/>
       <svg className="journey-art" viewBox="0 0 600 600" fill="none" aria-hidden="true">
         <defs>
           <clipPath id="europe-window"><rect x="5" y="30" width="590" height="435" rx="4"/></clipPath>
@@ -93,12 +92,12 @@ export function HeroArt() {
         <g className="journey-disciplines">
           <path d="M95 505 H505" stroke="#bccbb2"/>
           <circle cx="112" cy="505" r="4"/><circle cx="300" cy="505" r="4"/><circle cx="488" cy="505" r="4"/>
-          <text x="112" y="528" textAnchor="middle">INGENIERÍA</text>
-          <text x="300" y="528" textAnchor="middle">LENGUAJE</text>
-          <text x="488" y="528" textAnchor="middle">INTELIGENCIA ARTIFICIAL</text>
+          <text x="112" y="528" textAnchor="middle">{t(textos.mapa.ingenieria)}</text>
+          <text x="300" y="528" textAnchor="middle">{t(textos.mapa.lenguaje)}</text>
+          <text x="488" y="528" textAnchor="middle">{t(textos.mapa.ia)}</text>
         </g>
       </svg>
-      <div className="art-bottomline"><span>Cada lugar, una pieza.<br/>Cada lengua, una nueva pregunta.</span></div>
+      <div className="art-bottomline"><span>{t(textos.mapa.lema1)}<br/>{t(textos.mapa.lema2)}</span></div>
     </div>
   );
 }

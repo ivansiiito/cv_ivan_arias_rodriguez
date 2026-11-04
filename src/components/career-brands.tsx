@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, useState, type PointerEvent } from "react";
+import textos from "@/i18n/textos.json";
+import { translate, type Locale } from "@/i18n/locale";
 
 const brands = [
   { name: "Universidad Politécnica de Madrid", src: "/logos/upm.svg", size: [300, 150], crop: [21, 21, 258, 108] },
@@ -38,7 +40,8 @@ const destinations: Record<string, string> = {
   "Text Radar": "experience-0",
 };
 
-export function CareerBrands() {
+export function CareerBrands({ locale = "es" }: { locale?: Locale }) {
+  const t = (text: { es: string; en?: string }) => translate(text, locale);
   const [paused, setPaused] = useState(false);
   const [dragging, setDragging] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -76,11 +79,11 @@ export function CareerBrands() {
     setDragging(false);
   }
   return <div className="career-strip"><div className="container career-strip-inner">
-    <span className="career-strip-label">UN CAMINO CONSTRUIDO EN</span>
-    <div className={`career-marquee${dragging ? " is-dragging" : ""}`} tabIndex={0} role="region" aria-label="Organizaciones de mi trayectoria" onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={endDrag} onDragStart={event => event.preventDefault()} onClickCapture={event => { if (suppressClick.current) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}>
+    <span className="career-strip-label">{t(textos.carrusel.lema)}</span>
+    <div className={`career-marquee${dragging ? " is-dragging" : ""}`} tabIndex={0} role="region" aria-label={t(textos.carrusel.region)} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={endDrag} onDragStart={event => event.preventDefault()} onClickCapture={event => { if (suppressClick.current) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}>
       <div ref={trackRef} className={`career-track${paused ? " is-paused" : ""}`}>
         {[0, 1].map(copy => <div className="career-brands" key={copy} aria-hidden={copy === 1 ? true : undefined}>
-          {brands.map(brand => <a className="career-brand" key={brand.name} href={`#${destinations[brand.name]}`} tabIndex={copy === 1 ? -1 : undefined} aria-label={copy === 0 ? `Ver ${brand.name}` : undefined} onClick={() => { const target = document.getElementById(destinations[brand.name]); if (target instanceof HTMLDetailsElement) target.open = true; }}>{brand.name === "SetaLoca"
+          {brands.map(brand => <a className="career-brand" key={brand.name} href={`#${destinations[brand.name]}`} tabIndex={copy === 1 ? -1 : undefined} aria-label={copy === 0 ? t(textos.carrusel.ver).replace("{nombre}", brand.name) : undefined} onClick={() => { const target = document.getElementById(destinations[brand.name]); if (target instanceof HTMLDetailsElement) target.open = true; }}>{brand.name === "SetaLoca"
             ? <div className="setaloca-horizontal" role={copy === 0 ? "img" : undefined} aria-label={copy === 0 ? "SetaLoca" : undefined}>
                 <svg className="setaloca-mascot" viewBox="95 12 270 380" aria-hidden="true"><image href={brand.src} width="482" height="636"/></svg>
                 <svg className="setaloca-wordmark" viewBox="110 405 250 190" aria-hidden="true"><image href={brand.src} width="482" height="636"/></svg>
@@ -89,6 +92,6 @@ export function CareerBrands() {
         </div>)}
       </div>
     </div>
-    <button type="button" className="career-pause" onClick={() => setPaused(!paused)} aria-pressed={paused}>{paused ? "Reanudar" : "Pausar"}<span className="sr-only"> desplazamiento de logos</span></button>
+    <button type="button" className="career-pause" onClick={() => setPaused(!paused)} aria-pressed={paused}>{t(paused ? textos.carrusel.reanudar : textos.carrusel.pausar)}<span className="sr-only"> {t(textos.carrusel.descripcion)}</span></button>
   </div></div>;
 }

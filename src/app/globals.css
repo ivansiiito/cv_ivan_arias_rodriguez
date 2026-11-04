@@ -58,6 +58,22 @@ h2 { font-size: clamp(38px, 4.1vw, 57px); line-height: 1.13; letter-spacing: -2.
 .main-navigation > button:not(.button):hover::after, .main-navigation > button.active::after { transform: scaleX(1); }
 .nav-contact { min-height: 41px; padding: 11px 18px; margin-left: 8px; font-size: 12px; gap: 21px; }
 .menu-toggle { display: none; border: 0; background: transparent; width: 44px; height: 44px; align-items: center; justify-content: center; }
+.language-selector { position: relative; flex: none; font-size: 13px; color: #455a40; }
+.language-selector summary, .language-options a { display: flex; align-items: center; gap: 7px; padding: 9px; white-space: nowrap; }
+.language-selector svg:not(.lucide) { width: 23px; height: 16px; border-radius: 2px; flex: none; }
+.language-options { position: absolute; right: 0; top: 100%; min-width: 140px; padding: 4px; background: var(--paper); border: 1px solid var(--line); border-radius: 7px; box-shadow: 0 8px 24px #24352b1a; }
+.language-options a:hover, .language-options a[aria-current] { background: #e4ebda; text-decoration: none; }
+@media (max-width: 600px) { .header-inner { gap: 4px; } .language-selector { margin-left: auto; font-size: 12px; } .language-selector summary { padding: 6px; } }
+@media (max-width: 380px) { .header-inner .brand { gap: 7px; font-size: 16px; letter-spacing: -.5px; } .header-inner .brand-name { max-width: 100px; line-height: 1.05; white-space: normal; } .header-inner .brand-symbol, .header-inner .menu-toggle { flex: none; } }
+@media (min-width: 681px) and (max-width: 850px) {
+  .menu-toggle { display: flex; }
+  .main-navigation { display: none; position: absolute; top: 77px; left: 0; width: 100%; padding: 19px 24px 26px; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 14px 20px #24352b0a; }
+  .main-navigation.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .main-navigation > button:not(.button) { padding: 15px 4px; font-size: 16px; }
+  .main-navigation > button:not(.button)::after { display: none; }
+  .main-navigation .nav-contact { margin-top: 13px; min-height: 46px; justify-content: space-between; }
+  .language-selector { margin-left: auto; }
+}
 
 /* The opening composition and original vector sculpture. */
 .hero { display: grid; grid-template-columns: 1.05fr 1fr; column-gap: 32px; padding-top: 57px; }
@@ -669,7 +685,7 @@ details[open] > summary .details-plus { transform: rotate(45deg); }
 .career-brand { flex: none; display: grid; place-items: center; width: max-content; height: 72px; }
 .career-brand:focus-visible { outline: 2px solid #526449; outline-offset: 4px; border-radius: 3px; }
 .experience-item[id], .education-item[id], #formacion-online, #asociaciones { scroll-margin-top: 100px; }
-.about-copy .association-link { color: var(--ink); text-underline-offset: 3px; }
+.about-copy .association-link { color: #080b08; text-underline-offset: 3px; }
 .career-logo-crop { display: block; height: auto; max-height: 64px; mix-blend-mode: multiply; }
 .career-brand img { display: block; width: auto; max-width: 100%; height: auto; max-height: 64px; object-fit: contain; mix-blend-mode: multiply; }
 .setaloca-horizontal { display: flex; align-items: center; justify-content: center; gap: 3px; height: 64px; }
