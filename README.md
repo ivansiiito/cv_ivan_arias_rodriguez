@@ -16,7 +16,7 @@ Abre **http://127.0.0.1:3000** en el navegador. Mantén la terminal abierta mien
 
 En Windows también puedes hacer doble clic en **`iniciar-web.cmd`**. Si el puerto 3000 ya está ocupado, Next.js indicará en la terminal el puerto alternativo.
 
-Para una instalación nueva, necesitas Node.js 20.9 o posterior y ejecutar `npm ci` antes de `npm run dev`. La instalación necesita conexión a Internet; después, la web, sus fuentes, sus ilustraciones y la descarga del CV en Word funcionan localmente. Los enlaces a LinkedIn y La Tostadora abren servicios externos, y el correo abre tu aplicación de email.
+Para una instalación nueva, necesitas Node.js 20.9 o posterior y ejecutar `npm ci` antes de `npm run dev`. La instalación necesita conexión a Internet; después, la web, sus fuentes, sus ilustraciones y la descarga del CV en Word funcionan localmente. Los enlaces a LinkedIn y latostadora abren servicios externos, y el correo abre tu aplicación de email.
 
 ## Qué incluye
 
@@ -24,7 +24,7 @@ Para una instalación nueva, necesitas Node.js 20.9 o posterior y ejecutar `npm 
 - Seis etapas profesionales desplegables, con fechas y responsabilidades.
 - Cinco titulaciones, tres certificaciones y ocho idiomas con sus niveles.
 - Portfolio filtrable por producto, lenguaje e ingeniería.
-- Tres fichas individuales basadas en la trayectoria documentada: La Tostadora, investigación y docencia en la UCM, y redes y sistemas móviles en Nokia.
+- Tres fichas individuales basadas en la trayectoria documentada: latostadora, investigación y docencia en la UCM, y redes y sistemas móviles en Nokia.
 - Contacto por correo, copia de la dirección, LinkedIn y descarga del CV completo en Word (.docx).
 - Navegación móvil, acceso por teclado, enlace para saltar al contenido y respeto a la preferencia de movimiento reducido.
 - Metadatos, favicon e imagen de presentación para compartir.

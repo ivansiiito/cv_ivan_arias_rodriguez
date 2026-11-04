@@ -12,7 +12,7 @@ export function TwinTrigger() {
       onClick={() => window.dispatchEvent(new Event(OPEN_TWIN_EVENT))}
     >
       <MessagesSquare size={17} strokeWidth={1.5} aria-hidden="true"/>
-      <span>¿Quieres conocerme mejor? <strong>Habla con mi gemelo digital.</strong></span>
+      <span>¿Quieres conocerme mejor? <strong>Habla con IA, mi gemelo digital.</strong></span>
       <ArrowUpRight size={16} aria-hidden="true"/>
     </button>
   );

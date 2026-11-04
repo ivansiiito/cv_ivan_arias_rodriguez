@@ -13,7 +13,7 @@ export const experience = [
     period: "2022 — 2026",
     dates: "Octubre de 2022 — octubre de 2026",
     location: "Madrid, España",
-    description: "Como CTO de TextRadar definí la arquitectura, el enfoque del producto y las bases de datos, y formé y dirigí un equipo de hasta siete personas. Programé gran parte de la aplicación, principalmente el backend y también el frontend. El producto analizaba uno o dos documentos para detectar discrepancias entre sus contenidos.",
+    description: "Como CTO de TextRadar definí la arquitectura, el enfoque del producto y las bases de datos. Formé y dirigí un equipo de hasta siete personas. Programé gran parte de la aplicación, principalmente el backend, pero también aporté mucho al frontend. El producto analizaba uno o dos documentos para detectar discrepancias entre sus contenidos.",
     tags: ["Liderazgo tecnológico", "Desarrollo de software", "Inteligencia artificial", "Lengua española"],
     mark: "IA",
   },
@@ -22,8 +22,8 @@ export const experience = [
     role: "Investigación y docencia · FPU",
     period: "2017 — 2022",
     dates: "Octubre de 2017 — marzo de 2022",
-    location: "Madrid, España · estancia en Bragança, Portugal",
-    description: "Desarrollo de la tesis doctoral, formación y participación en congresos internacionales. Docencia de Lingüística Computacional y Procesamiento del Lenguaje Natural en la Facultad de Filología. Estancia de investigación de tres meses en el Instituto Politécnico de Bragança.",
+    location: "Madrid, España · estancia en Braganza, Portugal",
+    description: "Desarrollo de la tesis doctoral, formación y participación en congresos. Docencia de Lingüística Computacional y Procesamiento del Lenguaje Natural en la Facultad de Filología. Estancia de investigación de tres meses en el Instituto Politécnico de Bragança.",
     tags: ["Investigación", "Procesamiento del lenguaje natural", "Docencia"],
     mark: "UC",
   },
@@ -33,7 +33,7 @@ export const experience = [
     period: "2004 — 2019",
     dates: "Octubre de 2004 — junio de 2019",
     location: "Barcelona, España",
-    description: "Desarrollo de proyectos de camisetas como SetaLoca, Primera Piel, LocoLED y La Tostadora, junto con sus versiones internacionales. Responsabilidad sobre la web, las bases de datos, las pruebas y la evolución funcional, además de diseño, contenidos y marketing online.",
+    description: "Desarrollo de proyectos de camisetas como SetaLoca, Primera Piel, LocoLED y latostadora, junto con sus versiones internacionales. Responsabilidad sobre la web, las bases de datos, las pruebas y la evolución funcional, además de diseño, contenidos y marketing online.",
     tags: ["Emprendimiento", "E-commerce", "Desarrollo de producto"],
     mark: "NV",
   },
@@ -77,7 +77,7 @@ export const education = [
   { degree: "Ingeniería de Telecomunicación · Telemática", school: "Universidad Politécnica de Madrid (1994–1999) · Teknillinen Korkeakoulu, Helsinki (1999–2002)", period: "1994 — 2002", type: "Ingeniería", documents: [{ label: "Anverso", url: "/titulos/telecomunicaciones-anverso.png" }, { label: "Reverso", url: "/titulos/telecomunicaciones-reverso.png" }] },
 ];
 
-export const programmingExperience = ["Python", "JavaScript (vanilla)", "PHP"];
+export const programmingExperience = ["Python", "JavaScript", "PHP"];
 
 export const nokiaReferences = [
   { type: "RFC · 2006", title: "RFC 4460: SCTP Specification Errata and Issues", detail: "Coautor · IETF", url: "https://www.rfc-editor.org/rfc/rfc4460" },
@@ -158,18 +158,18 @@ export const projects: Project[] = [
   },
   {
     slug: "la-tostadora",
-    title: "La Tostadora",
+    title: "latostadora",
     category: "Producto",
     company: "Nextalia Ventures",
     period: "2004 — 2019",
     summary: "Tecnología, diseño y emprendimiento en el comercio electrónico de ropa personalizada.",
     role: "Cofundador y vicepresidente",
-    intro: "Como cofundador de Nextalia Ventures, participé en proyectos de camisetas que comenzaron con SetaLoca y continuaron con Primera Piel y LocoLED, hasta La Tostadora y sus versiones internacionales. Un trabajo en el que convivían las decisiones técnicas, el diseño y la evolución del producto.",
+    intro: "Como cofundador de Nextalia Ventures, participé en proyectos de camisetas que comenzaron con SetaLoca y continuaron con Primera Piel y LocoLED, hasta latostadora y sus versiones internacionales. Un trabajo en el que convivían las decisiones técnicas, el diseño y la evolución del producto.",
     contributions: ["Desarrollo del backend, la web y sus bases de datos.", "Construcción de herramientas internas para la producción de camisetas y el seguimiento de ventas.", "Primera Piel: diseños propuestos y votados por la comunidad, impresos en serigrafía en ediciones limitadas.", "LocoLED: camisetas con paneles de luces LED y mensajes programables.", "Pruebas, diseño visual, newsletters y atención a consultas de clientes."],
     tags: ["E-commerce", "Producto digital", "Diseño", "Desarrollo web"],
     visual: "commerce",
     externalUrl: "https://www.latostadora.com/",
-    externalLabel: "Visitar La Tostadora",
+    externalLabel: "Visitar latostadora",
   },
   {
     slug: "linguistica-computacional",

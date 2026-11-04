@@ -59,8 +59,8 @@ const right1 = [
   title('EXPERIENCIA  /  SELECCIÓN'),
   item('CTO · TextRadar', '2022—2026  /  LABORATORIO DE IA EN ESPAÑOL', 'Definí la arquitectura, las bases de datos y el enfoque algorítmico; programé gran parte del backend y también frontend. Formé y dirigí un equipo de hasta siete personas.'),
   p('Desarrollamos herramientas de IA para detectar discrepancias entre documentos y automatizar fichas editoriales con envío a DILVE. Organicé el trabajo y comuniqué los avances al CEO y a inversores.', 'Body'),
-  item('Investigación y docencia · UCM', '2017—2022  /  FPU · MADRID', 'Investigué representaciones semánticas y el modelo HTM. Impartí Lingüística Computacional y Procesamiento del Lenguaje Natural; realicé una estancia de investigación en Bragança.'),
-  item('Cofundador · Nextalia Ventures', '2004—2019  /  BARCELONA', 'Desarrollé backend, bases de datos y herramientas de producción y ventas para La Tostadora y sus versiones internacionales. Antes participaron en la trayectoria SetaLoca, Primera Piel y LocoLED.'),
+  item('Investigación y docencia · UCM', '2017—2022  /  FPU · MADRID', 'Investigué representaciones semánticas y el modelo HTM. Impartí Lingüística Computacional y Procesamiento del Lenguaje Natural; realicé una estancia de investigación en Braganza.'),
+  item('Cofundador · Nextalia Ventures', '2004—2019  /  BARCELONA', 'Desarrollé backend, bases de datos y herramientas de producción y ventas para latostadora y sus versiones internacionales. Antes participaron en la trayectoria SetaLoca, Primera Piel y LocoLED.'),
   p('CREAR  /  PROGRAMAR  /  ACOMPAÑAR', 'Highlight'),
 ].join('');
 

@@ -14,7 +14,7 @@ test("desktop: complete content, valid anchors, no browser errors and visual pre
   for (const href of await page.locator('a[href^="#"]').evaluateAll(links => links.map(link => link.getAttribute("href")))) {
     expect(await page.locator(href!).count()).toBe(1);
   }
-  await expect(page.locator(".project-card")).toHaveCount(3);
+  await expect(page.locator(".project-card")).toHaveCount(5);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   mkdirSync(".local/screenshots", { recursive: true });
   await page.screenshot({ path: ".local/screenshots/desktop.png", fullPage: true, animations: "disabled" });
@@ -37,12 +37,12 @@ test("portfolio filters, project pages and next project navigation work", async 
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Conectar lo que viene");
   await page.getByRole("link", { name: "Volver a proyectos" }).click();
   await page.getByRole("button", { name: "Producto", exact: true }).click();
-  await expect(page.locator(".project-card")).toHaveCount(1);
-  await page.getByRole("link", { name: "Ver proyecto: La Tostadora" }).click();
-  await expect(page.getByRole("link", { name: "Visitar La Tostadora" })).toHaveAttribute("href", "https://www.latostadora.com/");
+  await expect(page.locator(".project-card")).toHaveCount(3);
+  await page.getByRole("link", { name: "Ver proyecto: latostadora" }).click();
+  await expect(page.getByRole("link", { name: "Visitar latostadora" })).toHaveAttribute("href", "https://www.latostadora.com/");
   await page.getByRole("link", { name: "Volver a proyectos" }).click();
   await page.getByRole("button", { name: /Todos/ }).click();
-  await expect(page.locator(".project-card")).toHaveCount(3);
+  await expect(page.locator(".project-card")).toHaveCount(5);
 });
 
 test("career, languages, download and clipboard expose the real profile", async ({ page, context, request }) => {
@@ -80,7 +80,7 @@ test("mobile: navigation, Escape, reading order and overflow at narrow widths", 
   await page.keyboard.press("Escape");
   await expect(page.getByRole("button", { name: "Abrir menú" })).toBeFocused();
   await page.getByRole("button", { name: "Abrir menú" }).click();
-  await page.getByRole("navigation").getByRole("link", { name: "Formación" }).click();
+  await page.getByRole("navigation").getByRole("button", { name: "Formación" }).click();
   await expect(page).toHaveURL(/#formacion/);
   await expect(page.getByRole("navigation")).not.toBeVisible();
   for (const width of [320, 360, 390, 768, 1024]) {
@@ -100,7 +100,7 @@ test("keyboard, reduced motion, accessibility and honest missing-page behavior",
   await page.goto("/");
   await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Saltar al contenido" })).toBeFocused();
-  expect(await page.locator(".orb-art").evaluate(element => getComputedStyle(element).animationName)).toBe("none");
+  expect(await page.locator(".journey-trail-mask").first().evaluate(element => getComputedStyle(element).animationName)).toBe("none");
   const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(result.violations.map(item => ({ id: item.id, impact: item.impact, nodes: item.nodes.map(node => ({ target: node.target, summary: node.failureSummary })) }))).toEqual([]);
   await page.goto("/proyectos/la-tostadora");
