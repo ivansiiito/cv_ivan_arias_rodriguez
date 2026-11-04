@@ -180,6 +180,9 @@ details[open] > summary .details-plus { transform: rotate(45deg); }
 .education-content { flex: 1; }
 .degree-type { font-size: 9px; color: #59694d; letter-spacing: .7px; display: block; margin-bottom: 8px; }
 .education-content h3 { font-size: 18px; letter-spacing: -.45px; font-weight: 500; line-height: 1.5; }
+.program-link { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; vertical-align: middle; color: #526747; border-radius: 3px; }
+.program-link:hover { color: var(--ink); background: #e4ebda; }
+.program-link:focus-visible { outline: 2px solid #526449; outline-offset: 2px; }
 .education-content p { color: var(--muted); font-size: 12px; line-height: 1.8; margin-top: 6px; }
 .education-documents { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; font-size: 11px; color: #59694d; }
 .education-documents a, .certification-links a { display: inline-flex; align-items: center; gap: 3px; text-decoration: underline; text-underline-offset: 3px; }

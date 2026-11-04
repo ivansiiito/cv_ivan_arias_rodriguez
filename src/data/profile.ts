@@ -71,11 +71,23 @@ export const experience = [
 
 export const education = [
   { degree: "Doctorado en Lingüística Teórica y Aplicada", school: "Universidad Complutense de Madrid", period: "2016 — 2022", type: "PhD", description: "Tesis: «El modelo cortical HTM y su aplicación al conocimiento lingüístico». Sobresaliente cum laude con mención internacional.", documents: [{ label: "Anverso", url: "/titulos/doctorado-anverso.png" }, { label: "Reverso", url: "/titulos/doctorado-reverso.png" }] },
-  { degree: "Máster en Fonética y Fonología", school: "CSIC · Universidad Internacional Menéndez Pelayo", period: "2015 — 2016", type: "MSc", documents: [{ label: "Anverso", url: "/titulos/fonetica-anverso.png" }, { label: "Reverso", url: "/titulos/fonetica-reverso.png" }] },
+  { degree: "Máster en Fonética y Fonología · Tecnologías del habla", school: "CSIC · Universidad Internacional Menéndez Pelayo", period: "2015 — 2016", type: "MSc", documents: [{ label: "Anverso", url: "/titulos/fonetica-anverso.png" }, { label: "Reverso", url: "/titulos/fonetica-reverso.png" }] },
   { degree: "Grado en Lingüística y Lenguas Aplicadas", school: "Universidad Complutense de Madrid", period: "2011 — 2015", type: "Grado", documents: [{ label: "Anverso", url: "/titulos/linguistica-anverso.png" }, { label: "Reverso", url: "/titulos/linguistica-reverso.png" }] },
   { degree: "Máster en Administración y Dirección de Empresas", school: "Cámara de Comercio de Granada", period: "2010 — 2011", type: "MBA", documents: [{ label: "Anverso", url: "/titulos/mba-anverso.png" }] },
   { degree: "Ingeniería de Telecomunicación · Telemática", school: "Universidad Politécnica de Madrid (1994–1999) · Teknillinen Korkeakoulu, Helsinki (1999–2002)", period: "1994 — 2002", type: "Ingeniería", documents: [{ label: "Anverso", url: "/titulos/telecomunicaciones-anverso.png" }, { label: "Reverso", url: "/titulos/telecomunicaciones-reverso.png" }] },
 ];
+
+// Descripciones de los programas; los enlaces a los diplomas verifican los certificados personales.
+export const educationPrograms: Record<string, { url: string; detail?: string }> = {
+  "Doctorado en Lingüística Teórica y Aplicada": { url: "https://www.ucm.es/doctorado/doctoradolinguistica/" },
+  "Máster en Fonética y Fonología · Tecnologías del habla": { url: "https://wapps001.uimp.es/uxxiconsultas/ficheros/5/27502P02N_MFF_DEF.pdf", detail: "folleto de la UIMP de 2015, PDF" },
+  "Grado en Lingüística y Lenguas Aplicadas": { url: "https://www.ucm.es/linguistica/plan-de-estudios-antiguo-2011-2019-1", detail: "plan de estudios 2011-2019" },
+  "Máster en Administración y Dirección de Empresas": { url: "https://www.camaragranada.org/evento/formacion/escuela-de-direccion/master-en-direccion-y-administracion-de-empresas-mba-1653998639", detail: "edición posterior, 2022-2023" },
+  "Ingeniería de Telecomunicación · Telemática": { url: "https://www.upm.es/Estudiantes/Estudios_Titulaciones/EstudiosOficialesGrado/ArticulosRelacionados?fmt=detail&id=6a309cf067910210VgnVCM10000009c7648a____", detail: "plan de estudios de 1994" },
+  "Deep Learning Specialization": { url: "https://www.coursera.org/specializations/deep-learning" },
+  "DeepLearning.AI TensorFlow Developer Professional Certificate": { url: "https://www.coursera.org/professional-certificates/tensorflow-in-practice" },
+  "Machine Learning Engineering for Production (MLOps)": { url: "https://www.deeplearning.ai/the-batch/introducing-the-machine-learning-engineering-for-production-mlops-specialization", detail: "presentación original de la especialización" },
+};
 
 export const programmingExperience = ["Python", "JavaScript", "PHP"];
 
