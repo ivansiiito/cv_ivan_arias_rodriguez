@@ -67,6 +67,27 @@ test("provider: retries auth only when requested and masks upstream error bodies
   });
 });
 
+test("provider: sends ngrok warning bypass and authentication on both requests", async () => {
+  await withProvider(() => {}, async () => {
+    const originalFetch = globalThis.fetch;
+    const requests: { url: string; auth: string | null; bypass: string | null }[] = [];
+    process.env.LM_STUDIO_BASE_URL = "https://example.ngrok-free.dev";
+    process.env.LM_STUDIO_API_KEY = "test-lm-token";
+    globalThis.fetch = async (input, init) => {
+      const headers = new Headers(init?.headers);
+      requests.push({ url: String(input), auth: headers.get("authorization"), bypass: headers.get("ngrok-skip-browser-warning") });
+      return new Response(requests.length === 1 ? JSON.stringify({ data: [{ id: "chat-model" }] }) : "", { status: 200 });
+    };
+    try {
+      await createCompletion("Profile", [{ role: "user", content: "Hola" }], AbortSignal.timeout(5_000));
+      expect(requests).toEqual([
+        { url: "https://example.ngrok-free.dev/v1/models", auth: "Bearer test-lm-token", bypass: "true" },
+        { url: "https://example.ngrok-free.dev/v1/chat/completions", auth: "Bearer test-lm-token", bypass: "true" },
+      ]);
+    } finally { globalThis.fetch = originalFetch; }
+  });
+});
+
 test("provider: preserves split UTF-8 SSE, ignores reasoning, detects interrupted stream", async () => {
   const raw = [
     'data: {"choices":[{"delta":{"reasoning_content":"Private reasoning"}}]}\r\n\r\n',

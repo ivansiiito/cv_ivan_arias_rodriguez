@@ -14,7 +14,7 @@ npm run dev
 
 Abre **http://127.0.0.1:3000** en el navegador. Mantén la terminal abierta mientras uses la web; `Ctrl+C` detiene el servidor.
 
-En Windows también puedes hacer doble clic en **`iniciar-web.cmd`**. Si el puerto 3000 ya está ocupado, Next.js indicará en la terminal el puerto alternativo.
+En Windows también puedes hacer doble clic en **`iniciar-web-local.cmd`**. Si el puerto 3000 ya está ocupado, Next.js indicará en la terminal el puerto alternativo.
 
 Para una instalación nueva, necesitas Node.js 20.9 o posterior y ejecutar `npm ci` antes de `npm run dev`. La instalación necesita conexión a Internet; después, la web, sus fuentes, sus ilustraciones y la descarga del CV en Word funcionan localmente. Los enlaces a LinkedIn y latostadora abren servicios externos, y el correo abre tu aplicación de email.
 
@@ -61,6 +61,8 @@ LM_STUDIO_API_KEY=
 - **`LM_STUDIO_API_KEY`**: clave específica si activas autenticación. Si está vacía, las peticiones salen sin clave. Únicamente si LM Studio responde 401 o 403 se reintenta con `OPENROUTER_API_KEY`, la variable que ya existía en el `.env` aportado, si está definida.
 
 Ninguna clave se incluye en el contexto del modelo ni se expone al navegador. No se contacta con OpenRouter: el nombre de la variable existente solo sirve como alternativa de autenticación para el servidor configurado. Reinicia Next.js después de modificar las variables. La conexión está concentrada en `src/lib/lm-studio.ts` para facilitar un cambio posterior a otro proveedor compatible.
+
+Para conectar la web desplegada con LM Studio mediante ngrok, configura en Vercel las variables de servidor `LM_STUDIO_BASE_URL` (la URL HTTPS del túnel, con o sin `/v1`) y `LM_STUDIO_API_KEY` (la clave de LM Studio). No uses el prefijo `NEXT_PUBLIC_` para la clave. El entorno local conserva su propia configuración y dirección. Para que el chat publicado funcione deben estar activos el servidor de LM Studio y el túnel de ngrok; si cambia la URL del túnel, actualízala en Vercel y vuelve a desplegar. Las URL de `ngrok-free.dev` reciben automáticamente la cabecera `ngrok-skip-browser-warning`.
 
 Si el servidor está apagado, no hay un modelo disponible o la respuesta falla, el panel muestra un mensaje y permite reintentar. La espera máxima del servidor es de dos minutos. «Detener respuesta» cancela la petición en curso; «Nueva conversación» también la cancela y limpia el historial.
 
@@ -124,5 +126,5 @@ src/
   lib/chat-protocol.ts           Protocolo y límites compartidos del chat
 public/cv-ivan-arias-rodriguez.docx  CV descargable en Word
 tests/site.spec.ts               Pruebas de navegador
-iniciar-web.cmd                  Inicio rápido en Windows
+iniciar-web-local.cmd            Inicio rápido en Windows
 ```

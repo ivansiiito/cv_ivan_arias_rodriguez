@@ -23,16 +23,20 @@ function endpoint(path: string) {
 
 async function providerFetch(path: string, init: RequestInit) {
   const headers = new Headers(init.headers);
+  const url = endpoint(path);
+  if (new URL(url).hostname.endsWith(".ngrok-free.dev")) {
+    headers.set("ngrok-skip-browser-warning", "true");
+  }
   const configuredKey = process.env.LM_STUDIO_API_KEY?.trim();
   if (configuredKey) headers.set("Authorization", `Bearer ${configuredKey}`);
-  let response = await fetch(endpoint(path), { ...init, headers, cache: "no-store", redirect: "error" });
+  let response = await fetch(url, { ...init, headers, cache: "no-store", redirect: "error" });
 
   // The existing .env key is used only if the local server actually requests it.
   const legacyKey = process.env.OPENROUTER_API_KEY?.trim();
   if ([401, 403].includes(response.status) && !configuredKey && legacyKey) {
     await response.body?.cancel();
     headers.set("Authorization", `Bearer ${legacyKey}`);
-    response = await fetch(endpoint(path), { ...init, headers, cache: "no-store", redirect: "error" });
+    response = await fetch(url, { ...init, headers, cache: "no-store", redirect: "error" });
   }
 
   if (!response.ok) {
