@@ -59,7 +59,7 @@ export const experience = [
   },
   {
     company: "Banco de España",
-    role: "Operaciones de caja",
+    role: "Auxiliar de Caja",
     period: "1995 — 1999",
     dates: "Junio de 1995 — septiembre de 1999",
     location: "Barcelona, España",
@@ -107,9 +107,9 @@ export const phoneticsPublications = [
 ];
 
 export const certifications = [
-  { title: "Deep Learning Specialization", type: "Especialización · 5 cursos", scan: "/titulos/coursera-deep-learning.jpeg", date: "10 de noviembre de 2022", url: "https://coursera.org/share/a5eed1417ee0aa8872590d4c4da0ff24", details: "Cinco cursos sobre redes neuronales, optimización, redes convolucionales y modelos de secuencia, con aplicaciones en Python y TensorFlow." },
-  { title: "DeepLearning.AI TensorFlow Developer Professional Certificate", type: "Especialización · 4 cursos", scan: "/titulos/coursera-tensorflow.jpeg", date: "23 de noviembre de 2022", url: "https://coursera.org/share/a2e70da6a217a0b8fe2054e4ec43406a", details: "Cuatro cursos sobre TensorFlow, redes convolucionales, procesamiento del lenguaje natural y series temporales." },
   { title: "Machine Learning Engineering for Production (MLOps)", type: "Especialización · 4 cursos", scan: "/titulos/coursera-mlops.jpeg", date: "5 de julio de 2023", url: "https://coursera.org/share/7a0adc699e246c66a78f1ba572bf89ff", details: "Cuatro cursos sobre aprendizaje automático en producción, ciclo de vida de datos, pipelines y despliegue de modelos." },
+  { title: "DeepLearning.AI TensorFlow Developer Professional Certificate", type: "Especialización · 4 cursos", scan: "/titulos/coursera-tensorflow.jpeg", date: "23 de noviembre de 2022", url: "https://coursera.org/share/a2e70da6a217a0b8fe2054e4ec43406a", details: "Cuatro cursos sobre TensorFlow, redes convolucionales, procesamiento del lenguaje natural y series temporales." },
+  { title: "Deep Learning Specialization", type: "Especialización · 5 cursos", scan: "/titulos/coursera-deep-learning.jpeg", date: "10 de noviembre de 2022", url: "https://coursera.org/share/a5eed1417ee0aa8872590d4c4da0ff24", details: "Cinco cursos sobre redes neuronales, optimización, redes convolucionales y modelos de secuencia, con aplicaciones en Python y TensorFlow." },
 ];
 
 export const languages = [

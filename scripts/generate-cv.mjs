@@ -81,7 +81,7 @@ const right2 = [
   title('EXPERIENCIA  /  CONTINUACIÓN'),
   item('Cofundador · The Attic Labs', '2011—2013  /  MADRID', 'Participé en la concepción de Toucan, un sistema de entretenimiento inalámbrico a bordo. Me ocupé de la web, el diseño gráfico y la arquitectura de la solución.'),
   item('Ingeniero de I+D · Nokia', '1999—2010  /  HELSINKI', 'Investigación, estandarización e implementación de protocolos de red, con participación en la IETF y desarrollo de SCTP y Symbian. Trabajo en conectividad WLAN y móvil, ICE/STUN/TURN y pruebas para Maemo/MeeGo.'),
-  item('Operaciones de caja · Banco de España', '1995—1999  /  BARCELONA', 'Operaciones de pagos e ingresos con entidades bancarias comerciales; formación básica en contabilidad y derecho.'),
+  item('Auxiliar de Caja · Banco de España', '1995—1999  /  BARCELONA', 'Operaciones de pagos e ingresos con entidades bancarias comerciales; formación básica en contabilidad y derecho.'),
   title('CÓMO TRABAJO'),
   p('Me gusta liderar desde la cercanía y el ejemplo, organizar el trabajo con tableros Kanban y seguir participando en el código y las pruebas. Reconozco el buen trabajo, acompaño al equipo cuando se bloquea y apoyo su crecimiento profesional.', 'Body'),
   title('ÁREAS DE INTERÉS'),
