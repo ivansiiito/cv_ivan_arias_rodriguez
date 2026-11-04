@@ -661,6 +661,8 @@ details[open] > summary .details-plus { transform: rotate(45deg); }
 .career-marquee.is-dragging .career-track { animation-play-state: paused; }
 .career-brands { display: flex; width: max-content; flex: none; justify-content: flex-start; gap: 66px; padding-right: 66px; }
 .career-brand { flex: none; display: grid; place-items: center; width: max-content; height: 72px; }
+.career-brand:focus-visible { outline: 2px solid #526449; outline-offset: 4px; border-radius: 3px; }
+.experience-item[id], .education-item[id], #formacion-online { scroll-margin-top: 100px; }
 .career-logo-crop { display: block; height: auto; max-height: 64px; mix-blend-mode: multiply; }
 .career-brand img { display: block; width: auto; max-width: 100%; height: auto; max-height: 64px; object-fit: contain; mix-blend-mode: multiply; }
 .setaloca-horizontal { display: flex; align-items: center; justify-content: center; gap: 3px; height: 64px; }
